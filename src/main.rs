@@ -9,6 +9,17 @@ fn player_attack_with_target<T: Character, U: Character>(damager:&T, target:&mut
     println!("New HP of {}: {}", target.get_player_name(), target.get_hp());
 }
 
+fn is_character_alive<T: Character>(player: &T) -> bool {
+    match player.get_hp() {
+        0 => {
+            false
+        }
+        _ => {
+            true
+        }
+    }
+}
+
 fn main() {
     println!("Traits Demo | YeXiuPH");
     let player0: Player = Player {
@@ -28,6 +39,7 @@ fn main() {
     };
 
     player_attack_with_target(&player0, &mut player1);
-    println!("Health Verification: {}", player1.get_hp());
+    println!("Is Still Alive? : {}", is_character_alive(&player1));
     player_attack_with_target(&player0, &mut player1);
+    println!("Is Still Alive? : {}", is_character_alive(&player1));
 }
